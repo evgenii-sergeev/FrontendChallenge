@@ -41,7 +41,15 @@ export default function UserDetailsPage() {
   return (
     <main className="flex h-screen flex-col items-start justify-start p-4 gap-4">
       <div className="flex justify-between items-center w-full">
-        <h1 className="text-2xl font-bold">User Details</h1>
+        <div className="flex gap-2">
+          <Link
+            className="px-2 py-1"
+            href={`/`}
+          >
+            { "<" }
+          </Link>
+          <h1 className="text-2xl font-bold">User Details</h1>
+        </div>
         <div className="flex gap-2">
           <Link
             className="border px-2 py-1 rounded-md"
