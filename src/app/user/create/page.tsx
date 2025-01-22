@@ -5,7 +5,7 @@ import { type UserModel } from "@/domain/models/user.model";
 import { UserForm } from "@/ui/components/UserForm.component";
 import { useRouter } from "next/navigation";
 
-import Link from "next/link";
+import ButtonBack from "@/ui/components/ButtonBack.component";
 
 export default function CreateUserPage() {
   const router = useRouter();
@@ -26,9 +26,7 @@ export default function CreateUserPage() {
   return (
     <main className="flex min-h-screen flex-col items-start justify-start p-4">
       <div className="flex gap-2">
-        <Link className="px-2 py-1" href={`/`}>
-          {"<"}
-        </Link>
+        <ButtonBack />
         <h1 className="mb-6 text-2xl font-bold">Create User</h1>
       </div>
 

@@ -2,6 +2,7 @@
 
 import { useDeleteUser } from "@/domain/hooks/useDeleteUser.hook";
 import { useGetUserDetails } from "@/domain/hooks/useGetUserDetails.hook";
+import ButtonBack from "@/ui/components/ButtonBack.component";
 import UserCard from "@/ui/components/UserCard.component";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
@@ -42,12 +43,7 @@ export default function UserDetailsPage() {
     <main className="flex h-screen flex-col items-start justify-start p-4 gap-4">
       <div className="flex justify-between items-center w-full">
         <div className="flex gap-2">
-          <Link
-            className="px-2 py-1"
-            href={`/`}
-          >
-            { "<" }
-          </Link>
+          <ButtonBack />
           <h1 className="text-2xl font-bold">User Details</h1>
         </div>
         <div className="flex gap-2">
