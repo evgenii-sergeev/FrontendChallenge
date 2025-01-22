@@ -15,10 +15,10 @@ export default function Home() {
       </Link>
       {data && (
         <ol className="flex flex-col gap-2">
-          {data?.map((employee, index) => (
+          {data?.map((user, index) => (
             <li key={index}>
-              <Link href={`/employee/${employee.id}`}>
-                <UserCard user={employee} />
+              <Link href={`/user/${user.id}`}>
+                <UserCard user={user} />
               </Link>
             </li>
           ))}
