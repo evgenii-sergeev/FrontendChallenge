@@ -30,10 +30,10 @@ export const UserSchema = z.object({
   name: z.string(),
   username: z.string(),
   email: z.string().email(),
-  address: AddressSchema,
-  phone: z.string(),
-  website: z.string(),
-  company: CompanySchema,
+  address: AddressSchema.optional(),
+  phone: z.string().optional(),
+  website: z.string().optional(),
+  company: CompanySchema.optional(),
 });
 export type UserModel = z.infer<typeof UserSchema>;
 

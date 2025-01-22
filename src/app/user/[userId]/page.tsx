@@ -1,44 +1,63 @@
 "use client";
 
-import { UserModel } from "@/domain/models/user.model";
+import { useDeleteUser } from "@/domain/hooks/useDeleteUser.hook";
+import { useGetUserDetails } from "@/domain/hooks/useGetUserDetails.hook";
 import UserCard from "@/ui/components/UserCard.component";
 import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
 
-export default function EditEmployeePage() {
-  // TODO Implement employee details page and delete feature
-  const user: UserModel = {
-    id: 2,
-    name: "Mock User",
-    username: "mockuser",
-    email: "mock@example.com",
-    phone: "1-234-567-8900",
-    website: "mockuser.com",
-    company: {
-      name: "Mock Company",
-      catchPhrase: "Mock Catch Phrase",
-      bs: "Mock BS"
-    },
-    address: {
-      street: "Mock Street",
-      suite: "Mock Suite",
-      city: "Mock City",
-      zipcode: "Mock Zipcode",
-      geo: {
-        lat: "Mock Lat",
-        lng: "Mock Lng",
-      },
-    },
+export default function UserDetailsPage() {
+  const params = useParams();
+  const userId = Number(params.userId);
+  const router = useRouter();
+
+  const { data: user, isLoading, isError } = useGetUserDetails({ id: userId });
+  const { mutate: deleteUser, isPending: isDeleting } = useDeleteUser();
+
+  const handleDelete = () => {
+    deleteUser({ id: userId }, {
+      onSuccess: () => {
+        router.push("/");
+      }
+    });
   };
+
+  if (isLoading || isDeleting) {
+    return (
+      <main className="flex h-screen flex-col items-start justify-start p-4 gap-4">
+        <span>Loading...</span>
+      </main>
+    );
+  }
+
+  if (isError || !user) {
+    return (
+      <main className="flex h-screen flex-col items-start justify-start p-4 gap-4">
+        <span>Error loading user</span>
+      </main>
+    );
+  }
+
   return (
     <main className="flex h-screen flex-col items-start justify-start p-4 gap-4">
-      <h1>User Details</h1>
+      <div className="flex justify-between items-center w-full">
+        <h1 className="text-2xl font-bold">User Details</h1>
+        <div className="flex gap-2">
+          <Link
+            className="border px-2 py-1 rounded-md"
+            href={`/user/${user.id}/edit`}
+          >
+            Edit
+          </Link>
+          <button
+            onClick={handleDelete}
+            className="border px-2 py-1 rounded-md text-red-600 border-red-600"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
       <UserCard user={user} />
-      <Link
-        className="border px-2 py-1 rounded-md"
-        href={`/user/${user.id}/edit`}
-      >
-        Edit
-      </Link>
     </main>
   );
 }
