@@ -3,9 +3,12 @@
 import { useDeleteUser } from "@/domain/hooks/useDeleteUser.hook";
 import { useGetUserDetails } from "@/domain/hooks/useGetUserDetails.hook";
 import ButtonBack from "@/ui/components/ButtonBack.component";
+import DeleteConfirmation from "@/ui/components/DeleteConfirmation.component";
 import UserCard from "@/ui/components/UserCard.component";
 import Link from "next/link";
+
 import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function UserDetailsPage() {
   const params = useParams();
@@ -14,13 +17,18 @@ export default function UserDetailsPage() {
 
   const { data: user, isLoading, isError } = useGetUserDetails({ id: userId });
   const { mutate: deleteUser, isPending: isDeleting } = useDeleteUser();
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const handleDelete = () => {
-    deleteUser({ id: userId }, {
-      onSuccess: () => {
-        router.push("/");
+    deleteUser(
+      { id: userId },
+      {
+        onSuccess: () => {
+          setModalOpen(false);
+          router.push("/");
+        },
       }
-    });
+    );
   };
 
   if (isLoading || isDeleting) {
@@ -54,7 +62,7 @@ export default function UserDetailsPage() {
             Edit
           </Link>
           <button
-            onClick={handleDelete}
+            onClick={() => setModalOpen(true)}
             className="border px-2 py-1 rounded-md text-red-600 border-red-600"
           >
             Delete
@@ -62,6 +70,11 @@ export default function UserDetailsPage() {
         </div>
       </div>
       <UserCard user={user} />
+      <DeleteConfirmation
+        isOpen={isModalOpen}
+        onRequestClose={() => setModalOpen(false)}
+        onConfirm={handleDelete}
+      />
     </main>
   );
 }
