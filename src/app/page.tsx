@@ -1,11 +1,11 @@
 "use client";
 
-import { useGetEmployeeList } from "@/domain/hooks/useGetEmployeeList.hook";
-import EmployeeCard from "@/ui/components/EmployeeCard.component";
+import { useGetUserList } from "@/domain/hooks/useGetUserList.hook";
+import UserCard from "@/ui/components/UserCard.component";
 import Link from "next/link";
 
 export default function Home() {
-  const { data, isLoading, isError } = useGetEmployeeList();
+  const { data, isLoading, isError } = useGetUserList();
 
   return (
     <main className="flex h-screen flex-col items-start justify-start p-4 gap-4">
@@ -18,7 +18,7 @@ export default function Home() {
           {data?.map((employee, index) => (
             <li key={index}>
               <Link href={`/employee/${employee.id}`}>
-                <EmployeeCard employee={employee} />
+                <UserCard user={employee} />
               </Link>
             </li>
           ))}
