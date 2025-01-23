@@ -4,11 +4,15 @@ import Link from "next/link";
 
 interface ButtonBackProps {
   route?: string;
+  className?: string;
 }
 
-export default function ButtonBack({ route = "/" }: ButtonBackProps) {
+export default function ButtonBack({
+  route = "/",
+  className,
+}: ButtonBackProps) {
   return (
-    <Link href={route} className="px-2 py-1">
+    <Link href={route} className={className}>
       <SquareArrowLeft />
     </Link>
   );
