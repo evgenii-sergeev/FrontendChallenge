@@ -27,7 +27,7 @@ export default function UserDetailsPage() {
           setModalOpen(false);
           router.push("/");
         },
-      }
+      },
     );
   };
 
@@ -50,7 +50,7 @@ export default function UserDetailsPage() {
   return (
     <main className="flex h-screen flex-col items-start justify-start p-4 gap-4">
       <div className="flex justify-between items-center w-full">
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center mb-4">
           <ButtonBack />
           <h1 className="text-2xl font-bold">User Details</h1>
         </div>
@@ -69,7 +69,9 @@ export default function UserDetailsPage() {
           </button>
         </div>
       </div>
-      <UserCard user={user} />
+      <div className="flex flex-col gap-2 w-full">
+        <UserCard user={user} />
+      </div>
       <DeleteConfirmation
         isOpen={isModalOpen}
         onRequestClose={() => setModalOpen(false)}

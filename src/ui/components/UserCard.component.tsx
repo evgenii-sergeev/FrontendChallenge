@@ -8,10 +8,10 @@ export interface UserCardProps {
 
 const UserCard = ({ user }: UserCardProps): ReactNode => {
   return (
-    <div className="w-full shadow bg-slate-500 p-4 flex gap-2">
+    <div className="w-full h-full shadow bg-slate-500 p-4 flex gap-2">
       <span>{user.id}</span>
       <span>{user.name}</span>
-        <span>{UserFormatter.formatAddress(user.address)}</span>
+      <span>{UserFormatter.formatAddress(user.address)}</span>
     </div>
   );
 };

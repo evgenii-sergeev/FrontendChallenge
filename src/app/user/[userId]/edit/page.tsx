@@ -24,7 +24,7 @@ export default function EditUserPage() {
           onSuccess: () => {
             router.push(`/user/${userId}`);
           },
-        }
+        },
       );
     } catch (error) {
       console.error("Failed to update user:", error);
@@ -37,9 +37,9 @@ export default function EditUserPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-start justify-start p-4">
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center mb-4">
         <ButtonBack route={`/user/${userId}`} />
-        <h1 className="mb-6 text-2xl font-bold">Edit User</h1>
+        <h1 className="text-2xl font-bold">Edit User</h1>
       </div>
 
       <UserForm

@@ -8,9 +8,12 @@ export const useUpdateUser = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (params: { id: number } & Partial<UserModel>) => service.updateUserById(params),
+    mutationFn: (params: { id: number } & Partial<UserModel>) =>
+      service.updateUserById(params),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["getUserDetails", variables.id] });
+      queryClient.invalidateQueries({
+        queryKey: ["getUserDetails", variables.id],
+      });
     },
   });
 };

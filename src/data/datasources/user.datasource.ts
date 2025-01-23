@@ -36,12 +36,12 @@ export default class UserDatasource extends UserDatasourceContract {
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/users",
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(params),
-        }
+        },
       );
 
       // Validate response
@@ -87,12 +87,12 @@ export default class UserDatasource extends UserDatasourceContract {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/users/${params.id}`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(params),
-        }
+        },
       );
 
       // Validate response
@@ -116,8 +116,8 @@ export default class UserDatasource extends UserDatasourceContract {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/users/${params.id}`,
         {
-          method: 'DELETE',
-        }
+          method: "DELETE",
+        },
       );
 
       // Validate response

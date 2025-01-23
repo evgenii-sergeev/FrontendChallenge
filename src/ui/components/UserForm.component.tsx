@@ -38,10 +38,7 @@ export function UserForm({
       onSubmit={handleSubmit(onSubmit)}
       className="w-full max-w-2xl space-y-6"
     >
-      {/* Personal Information */}
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold">Personal Information</h2>
-
         <div>
           <label className="block text-sm font-medium mb-1">Name</label>
           <input

@@ -3,9 +3,9 @@ import UserDatasourceContract from "../contracts/userDatasource.contract";
 import { UserListModel, UserModel } from "../models/user.model";
 import { GetUserByIdParams } from "../params/user.param";
 
-  export default class UserService {
+export default class UserService {
   private static _instance: UserService;
-    public static getInstance(): UserService {
+  public static getInstance(): UserService {
     if (!UserService._instance) {
       UserService._instance = new UserService();
     }
@@ -13,7 +13,7 @@ import { GetUserByIdParams } from "../params/user.param";
   }
 
   private constructor(
-      private datasource: UserDatasourceContract = new UserDatasource(),
+    private datasource: UserDatasourceContract = new UserDatasource(),
   ) {}
 
   public getUserList(): Promise<UserListModel | undefined> {
@@ -25,16 +25,12 @@ import { GetUserByIdParams } from "../params/user.param";
   public getUserById(
     params: GetUserByIdParams,
   ): Promise<UserModel | undefined> {
-      return this.datasource.getUserById(params);
+    return this.datasource.getUserById(params);
   }
-  public updateUserById(
-    params: unknown,
-  ): Promise<UserModel | undefined> {
+  public updateUserById(params: unknown): Promise<UserModel | undefined> {
     return this.datasource.updateUserById(params);
   }
-  public deleteUserById(
-    params: unknown,
-  ): Promise<UserModel | undefined> {
+  public deleteUserById(params: unknown): Promise<UserModel | undefined> {
     return this.datasource.deleteUserById(params);
   }
 }

@@ -25,7 +25,7 @@ export default function CreateUserPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-start justify-start p-4">
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center">
         <ButtonBack />
         <h1 className="mb-6 text-2xl font-bold">Create User</h1>
       </div>
