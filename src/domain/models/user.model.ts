@@ -26,9 +26,9 @@ export const CompanySchema = z.object({
 export type CompanyModel = z.infer<typeof CompanySchema>;
 
 export const UserSchema = z.object({
-  id: UserIdSchema,
-  name: z.string(),
-  username: z.string(),
+  id: UserIdSchema.optional(),
+  name: z.string().min(1, "Name is required"),
+  username: z.string().min(1, "Username is required"),
   email: z.string().email(),
   address: AddressSchema.optional(),
   phone: z.string().optional(),
